@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driving Test Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .options {
+            list-style-type: none;
+            padding: 0;
+        }
+        .options li {
+            margin: 5px 0;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Driving Test Quiz</h1>
+    <div id="quiz"></div>
+    <script>
+        const questions = [
+            {
+                question: "When a vehicle is involved in an accident causing injury to any person...",
+                options: [
+                    "Take the vehicle to the nearest police station and report the accident",
+                    "Stop the vehicle and report to police station",
+                    "Take all reasonable steps to secure medical attention to the injured and report to the nearest police within 24 hours."
+                ],
+                correct: 2
+            },
+            {
+                question: "When a vehicle approaches an unguarded railway level crossing...",
+                options: [
+                    "Stop and listen on either side of the level crossing, and then proceed",
+                    "Slow down to 15 kmph, look both sides of the track and then proceed",
+                    "Stop the vehicle on the left side of the road, get down from the vehicle, go to the railway track, and ensure that no train or trolley is coming from either side",
+                    "Sound horn and cross the track as fast as possible"
+                ],
+                correct: 2
+            },
+            {
+                question: "You can overtake a vehicle in front through the right side of that vehicle...",
+                options: [
+                    "Through the left side",
+                    "Through the right side",
+                    "Through the left side, if the road is wide"
+                ],
+                correct: 1
+            },
+            {
+                question: "How can you distinguish a transport vehicle?",
+                options: [
+                    "By looking at the tyre size",
+                    "By colour of the vehicle",
+                    "Should see the number plate of the vehicle"
+                ],
+                correct: 2
+            },
+            {
+                question: "In a road without footpath, the pedestrians should walk...",
+                options: [
+                    "On the right side of the road",
+                    "Should walk on the left side of the road",
+                    "May walk on either side of the road"
+                ],
+                correct: 0
+            },
+            {
+                question: "Use of horn prohibited",
+                options: [
+                    "Mosque, Church and Temple",
+                    "Near Hospital, Courts of Law",
+                    "Near Police Station",
+                    "All of the above"
+                ],
+                correct: 3
+            },
+            {
+                question: "Parking is permitted",
+                options: [
+                    "In turnings",
+                    "On left side of the road",
+                    "Where parking is not prohibited"
+                ],
+                correct: 2
+            },
+            {
+                question: "When fuels is filled in a vehicle...",
+                options: [
+                    "Shall not check air pressure",
+                    "Shall not smoke",
+                    "Shall not use any light of the vehicle"
+                ],
+                correct: 1
+            },
+            {
+                question: "Free passage should be given to the following types of vehicles",
+                options: [
+                    "Police vehicles",
+                    "Ambulance and fire service vehicles",
+                    "Express, Super Express buses"
+                ],
+                correct: 1
+            },
+            {
+                question: "Driver of a vehicle may overtake...",
+                options: [
+                    "While driving down hill",
+                    "If the road is sufficiently wide",
+                    "When the driver of the vehicle in front shows the signal to overtake"
+                ],
+                correct: 2
+            },
+            {
+                question: "Zebra lines are meant for...",
+                options: [
+                    "Stopping vehicle",
+                    "Pedestrians Crossing",
+                    "For giving preference to Vehicle"
+                ],
+                correct: 1
+            },
+            {
+                question: "Red traffic light indicates...",
+                options: [
+                    "Vehicle can proceed with caution",
+                    "Stop the vehicle",
+                    "Slow down"
+                ],
+                correct: 1
+            },
+            {
+                question: "Drunken driving is...",
+                options: [
+                    "Allowed in private vehicles",
+                    "Allowed during night time",
+                    "Prohibited in all vehicles."
+                ],
+                correct: 2
+            },
+            {
+                question: "Seat belts have to be used by",
+                options: [
+                    "Drive only",
+                    "Front seat Passengers Only",
+                    "Both"
+                ],
+                correct: 2
+            },
+            {
+                question: "Over loading of any kind is",
+                options: [
+                    "Prohibited under law",
+                    "Allowed if the driver can control the vehicle safely",
+                    "allowed if the driver pays the fine."
+                ],
+                correct: 0
+            },
+            {
+                question: "When a vehicle is parked on the road side during night...",
+                options: [
+                    "The vehicle should be locked",
+                    "The person having licence to drive such a vehicle should be in the drivers seat",
+                    "The park light shall remain lit"
+                ],
+                correct: 2
+            },
+            {
+                question: "When an ambulance is approaching...",
+                options: [
+                    "Allow passage if there are no vehicles from front side",
+                    "No preference need be given",
+                    "The driver shall allow free passage by drawing to the side of road"
+                ],
+                correct: 2
+            },
+            {
+                question: "Fog lamps are used...",
+                options: [
+                    "During night",
+                    "When there is mist",
+                    "When the opposite vehicle is not using dim light."
+                ],
+                correct: 1
+            },
+            {
+                question: "When the slippery road sign is seen on the road, the driver shall...",
+                options: [
+                    "Reduce speed by changing the gear",
+                    "Apply brake",
+                    "Proceed in the same speed"
+                ],
+                correct: 0
+            },
+            {
+                question: "Overtaking when approaching a bend or a junction...",
+                options: [
+                    "Is permissible",
+                    "Not Permissible",
+                    "Is permissible with care"
+                ],
+                correct: 1
+            },
+            {
+                question: "To signal while taking U-turn",
+                options: [
+                    "Left turn signal",
+                    "Right turn signal",
+                    "Slow down signal"
+                ],
+                correct: 1
+            },
+            {
+                question: "A place where parking is prohibited",
+                options: [
+                    "In front of parked vehicle",
+                    "On One-way road",
+                    "On foot-path"
+                ],
+                correct: 2
+            },
+            {
+                question: "Overtaking is prohibited in following circumstances",
+                options: [
+                    "When it is likely to cause inconvenience or danger to other traffic",
+                    "When the vehicle in front is reducing speed",
+                    "During night"
+                ],
+                correct: 0
+            },
+            {
+                question: "Rear view mirror is used for...",
+                options: [
+                    "For seeing face",
+                    "For watching the traffic approaching from behind",
+                    "For seeing the back seat passenger"
+                ],
+                correct: 1
+            },
+            {
+                question: "Boarding in and alighting from a vehicle while in motion...",
+                options: [
+                    "Permitted in bus",
+                    "Permitted in Autorikshaw",
+                    "Prohibited in all vehicles"
+                ],
+                correct: 2
+            },
+            {
+                question: "Overtaking is prohibited...",
+                options: [
+                    "When the road ahead is not clearly visible",
+                    "When the road ahead is wide enough",
+                    "When the road center is marked with white broken lines"
+                ],
+                correct: 0
+            },
+            {
+                question: "Before overtaking a vehicle, it should be ensured that...",
+                options: [
+                    "No vehicle is approaching from behind",
+                    "The road ahead is clearly visible and it is safe to overtake",
+                    "The vehicle in front is turning left."
+                ],
+                correct: 1
+            },
+            {
+                question: "While turning to a road to the left, the driver should...",
+                options: [
+                    "Show the left turn signal, drive to the center and turn to the left",
+                    "Show the left turn signal, keep to the left side of the road and turn to the left",
+                    "Sound horn and turn to the left"
+                ],
+                correct: 1
+            },
+            {
+                question: "Validity of P.U.C.C. (Pollution Under Control Certificate)",
+                options: [
+                    "6 Months",
+                    "One Year",
+                    "Two Years"
+                ],
+                correct: 0
+            },
+            {
+                question: "Minimum age for getting a licence to drive '50 cc' motor cycle without gear",
+                options: [
+                    "18 years",
+                    "21 years",
+                    "16 years"
+                ],
+                correct: 2
+            },
+            {
+                question: "While turning to the left, the driver of a two wheeler shall",
+                options: [
+                    "Extend his left hand towards left",
+                    "Not show hand signal",
+                    "Show left turn signal with his right hand"
+                ],
+                correct: 2
+            },
+            {
+                question: "The pedestrian shall not cross the road at sharp bends or very near to stop line. Why?",
+                options: [
+                    "Inconvenience to other vehicles.",
+                    "Obstruction to other vehicles.",
+                    "Vehicle coming from behind the bend may not be able to see the pedestrian."
+                ],
+                correct: 2
+            },
+            {
+                question: "Documents of private vehicles are...",
+                options: [
+                    "Registration Cert., G.C.R., Insurance Cert",
+                    "Registration Certificate, Insurance Certificate, Tax token, Driving licence",
+                    "Registration Certi., Permit, Trip Sheet"
+                ],
+                correct: 1
+            },
+            {
+                question: "The driver of a vehicle shall not take U-turn...",
+                options: [
+                    "At a road where there is no traffic restriction",
+                    "At a busy road",
+                    "In front of a hospital"
+                ],
+                correct: 1
+            },
+            {
+                question: "The time area for a new car is for",
+                options: [
+                    "One year from the date of registration of the vehicle",
+                    "15 years",
+                    "5 years"
+                ],
+                correct: 1
+            },
+            {
+                question: "When the vehicle passing through left side on turnings",
+                options: [
+                    "The registration of the vehicle is cancelled",
+                    "is an offence",
+                    "is permissible."
+                ],
+                correct: 1
+            },
+            {
+                question: "When you see the traffic sign of school, You should...",
+                options: [
+                    "Stop the vehicle, sound horn and proceed",
+                    "Slow down and proceed with caution",
+                    "Sound horn continuously and proceed"
+                ],
+                correct: 1
+            },
+            {
+                question: "While You Are Driving With The Head Light In High Beam During Night, if a vehicle approaches from opposite direction, you will...",
+                options: [
+                    "Proceed Keeping to the left",
+                    "Put the head light in dim and bright alternatively several times",
+                    "Dim the head light till the vehicle passes"
+                ],
+                correct: 2
+            },
+            {
+                question: "The driver of a vehicle extends his right arm and hand horizontally with palm downwards and then moves the arm upward and downward several times, you will understand that...",
+                options: [
+                    "He is turning to the left",
+                    "He is slowing down the vehicle",
+                    "Allowing to overtake"
+                ],
+                correct: 1
+            },
+            {
+                question: "More than two persons on a two wheeler is...",
+                options: [
+                    "Allowed in unavoidable circumstances",
+                    "Violation of law",
+                    "Allowed when the traffic is less"
+                ],
+                correct: 1
+            },
+            {
+                question: "You want to overtake a vehicle near a hospital you will...",
+                options: [
+                    "Blow horn",
+                    "Blow horn continuously",
+                    "Not blow horn"
+                ],
+                correct: 2
+            },
+            {
+                question: "An accident victim can be treated by",
+                options: [
+                    "Only a Government hospital doctor",
+                    "Any registered medical practitioner",
+                    "by the driver"
+                ],
+                correct: 1
+            },
+            {
+                question: "Using unregistered vehicle in Public Place is...",
+                options: [
+                    "Illegal",
+                    "Legal",
+                    "Legal in disaster condition"
+                ],
+                correct: 0
+            },
+            {
+                question: "Minimum age for obtaining Driving licence for transport vehicles is",
+                options: [
+                    "25 years",
+                    "18 years",
+                    "20 years"
+                ],
+                correct: 2
+            },
+            {
+                question: "Number of persons can be carried in the cabin of a Goods Carriage",
+                options: [
+                    "5 Persons",
+                    "Sufficient persons for loading and unloading the goods",
+                    "As many persons as recorded in the Registration Certificate"
+                ],
+                correct: 2
+            },
+            {
+                question: "When your vehicle is being over taken, you should",
+                options: [
+                    "Stop your vehicle",
+                    "Speed up your vehicle and let the other vehicle overtake",
+                    "Not obstruct the other vehicle from overtaking"
+                ],
+                correct: 2
+            },
+            {
+                question: "If a person in charge of an animal in a vehicle causes obstruction to free flow of traffic, you...",
+                options: [
+                    "Can overtake through the left",
+                    "Can report to the police, request the person to allow free passage",
+                    "Should stop the vehicle."
+                ],
+                correct: 1
+            },
+            {
+                question: "If the driver shall stop the vehicle...",
+                options: [
+                    "The driver shall reduce the speed of the vehicle",
+                    "The driver shall blow the horn"
+                ],
+                correct: 0
+            },
+            {
+                question: "Over speeding...",
+                options: [
+                    "Is an offence leading to suspension or cancellation of driving license",
+                    "Is an offence leading to punishment by fine only",
+                    "is not an offence"
+                ],
+                correct: 0
+            },
+            {
+                question: "When red light glows on the traffic signal, the vehicle should...",
+                options: [
+                    "Stop at the stop line",
+                    "Blow horn and proceed",
+                    "Slow down and proceed with caution"
+                ],
+                correct: 0
+            },
+            {
+                question: "Type of horn permitted",
+                options: [
+                    "Air-horn",
+                    "Multi-toned horn",
+                    "Electric horn"
+                ],
+                correct: 2
+            },
+            {
+                question: "Parking is prohibited in the following place",
+                options: [
+                    "Entrance of hospital",
+                    "Left side of the road",
+                    "Market area"
+                ],
+                correct: 0
+            },
+            {
+                question: "Parking is prohibited in the following place",
+                options: [
+                    "Blocking a fire hydrant",
+                    "Near a public well",
+                    "Left side of the road"
+                ],
+                correct: 0
+            },
+            {
+                question: "Smoking while driving public service vehicle",
+                options: [
+                    "Can attract suspension of driving licence",
+                    "Can attract fine only",
+                    "None of the above"
+                ],
+                correct: 0
+            },
+            {
+                question: "Blinking red traffic light means",
+                options: [
+                    "Stop the vehicle till green light glows",
+                    "Stop the vehicle and proceed if safe",
+                    "Reduce speed and proceed"
+                ],
+                correct: 1
+            },
+            {
+                question: "All motor vehicles must be covered by",
+                options: [
+                    "Life Insurance",
+                    "Third Party insurance",
+                    "Comprehensive Insurance"
+                ],
+                correct: 1
+            },
+            {
+                question: "Abandoning a transport vehicle as a mark of protest or agitation or any kind of strike in a public place or any other place causing obstruction or inconvenience to the public or passengers or other users of such places",
+                options: [
+                    "The driving license is liable to be suspended or cancelled",
+                    "Only fine is attracted",
+                    "Legitimate right of driver"
+                ],
+                correct: 0
+            },
+            {
+                question: "When the vehicle behind has begun to overtake our vehicle",
+                options: [
+                    "We shall not overtake another vehicle",
+                    "We can overtake another vehicle",
+                    "We can overtake another vehicle blowing horn"
+                ],
+                correct: 0
+            },
+            {
+                question: "Carrying overload in goods carriages",
+                options: [
+                    "Legally not punishable",
+                    "Only fine is attracted",
+                    "Can attract suspension or cancellation of driving license"
+                ],
+                correct: 2
+            },
+            {
+                question: "To carry pillion rider on a motor cycle",
+                options: [
+                    "The vehicle shall be provided with foot rest, hand grip, and sari guard",
+                    "The vehicle shall be provided with side car",
+                    "Vehicle shall be provided with rear view mirror"
+                ],
+                correct: 0
+            },
+            {
+                question: "The driver of a taxi refusing the offer for journey for the reason that the distance is short",
+                options: [
+                    "Can attract suspension/cancellation of driving license with fine",
+                    "Only fine is attracted",
+                    "Registration of vehicle can be cancelled"
+                ],
+                correct: 0
+            },
+            {
+                question: "When a motor vehicle is involved in an accident",
+                options: [
+                    "Shall report to the nearest police station within 24 hours",
+                    "Shall report to the nearest police station within 12 hours",
+                    "Shall report to the nearest police station within 48 hours"
+                ],
+                correct: 0
+            },
+            {
+                question: "When any property of a third party is damaged due to an accident",
+                options: [
+                    "Driver shall report to the nearest police station within 24 hours",
+                    "Driver shall report to the nearest police station within 7 days",
+                    "Need not report to any police station"
+                ],
+                correct: 0
+            },
+            {
+                question: "Zig-Zag driving is",
+                options: [
+                    "Dangerous to two wheelers only",
+                    "Dangerous to all at all times",
+                    "Dangerous to four wheelers Vehicles"
+                ],
+                correct: 1
+            },
+            {
+                question: "How can we overcome the reduction of braking action after water servicing",
+                options: [
+                    "Brakes shall be adjusted by a mechanic",
+                    "The vehicle to be withdrawn from the traffic at once",
+                    "By operating the brake at several times at a slow driving speed"
+                ],
+                correct: 2
+            },
+            {
+                question: "When you reach an intersection where there is no signal light or police man, you will",
+                options: [
+                    "Give way to traffic approaching the intersection from other roads",
+                    "Give proper signal, sound the horn and proceed",
+                    "Give way to the traffic approaching the intersection on your right side and proceed after giving necessary signals"
+                ],
+                correct: 2
+            },
+            {
+                question: "Painting olive green in a private motor car is",
+                options: [
+                    "Not permitted",
+                    "Permitted",
+                    "Special permission is required"
+                ],
+                correct: 0
+            },
+            {
+                question: "While you are approaching an intersection where the yellow signal light is blinking, you should",
+                options: [
+                    "As there is no restriction, proceed at the same speed",
+                    "Stop the vehicle and wait for the green light to appear",
+                    "Slow down the vehicle and proceed only after ensuring that it is safe to do so"
+                ],
+                correct: 2
+            },
+            {
+                question: "Where the road is marked with continuous yellow line the vehicle should",
+                options: [
+                    "Not touch or cross the yellow line",
+                    "Allow to overtake only through the right side of yellow line",
+                    "Cross the line only when overtaking a vehicle in front"
+                ],
+                correct: 0
+            },
+            {
+                question: "While you are driving on gradient roads, you should",
+                options: [
+                    "Give precedence to the vehicles coming down the hill",
+                    "Give precedence to the vehicles going up the hill",
+                    "Give precedence to the vehicle carrying heavy load"
+                ],
+                correct: 1
+            },
+            {
+                question: "While a vehicle entering a main road from a branch road, the driver shall give preference",
+                options: [
+                    "To the vehicles coming from the left",
+                    "To the vehicles coming from the right",
+                    "To all vehicles proceeding along the main road"
+                ],
+                correct: 2
+            },
+            {
+                question: "You can overtake a vehicle through the right side if",
+                options: [
+                    "The driver of that vehicle indicates his intention to turn right and proceeds to the center of the road",
+                    "There is sufficient space on the left side",
+                    "That vehicle moves slowly"
+                ],
+                correct: 0
+            },
+            {
+                question: "You hold a learners licence for motor cycle",
+                options: [
+                    "You will drive when the traffic is less",
+                    "You will drive the vehicle only when an instructor holding driving licence to drive motor cycle accompanies",
+                    "You will not carry any other person on the motor cycle except for the purpose of getting instructions from an instructor who holds a valid driving licence to drive motor cycle"
+                ],
+                correct: 2
+            },
+            {
+        "question": "What is Tailgating?",
+        "options": [
+            "Driving too close behind a vehicle in a dangerous manner.",
+            "Keeping safe distance from the vehicle ahead regulating the speed proportionately.",
+            "Keeping a distance of at least 7 meters from the vehicle ahead."
+        ],
+        "correct": 0
+    },
+    {
+        "question": "The middle lane is for....",
+        "options": [
+            "Overtaking",
+            "Two wheelers",
+            "Traffic at 40 km/hr."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "The driver of a tractor shall not carry",
+        "options": [
+            "Any person other than the driver",
+            "More than three persons other than the driver",
+            "More than two persons including the driver"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Overtaking is prohibited when...",
+        "options": [
+            "The road is marked with broken center line, in white or yellow colour.",
+            "The road is marked with continuous center line in yellow colour.",
+            "Vehicle is driven on a steep hill."
+        ],
+        "correct": 2
+    },
+    {
+        "question": "A vehicle can be seized by authorized officers, if",
+        "options": [
+            "The vehicle is not covered by a valid registration or permit",
+            "The vehicle is not covered by a valid insurance",
+            "The vehicle exceeds the speed limit"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "When the yellow light at an intersection appear on the signal light, the driver of a approaching vehicle should....",
+        "options": [
+            "Ensure safety and drive away",
+            "Slow down to stop",
+            "Sound horn and proceed"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "What is defensive driving?",
+        "options": [
+            "Driving cautiously anticipating violation of traffic rules and road signs both by drivers and other road users.",
+            "Driving with sole aim or reaching destination without giving regard to road signs.",
+            "Driving on the assumption that other drivers will be cautions."
+        ],
+        "correct": 0
+    },
+    {
+        "question": "What is meant by stop line",
+        "options": [
+            "A line in white or yellow colour at the approach of road junction or pedestrian crossings",
+            "A line drawn through the center of the road in yellow colour",
+            "A broken white line through the center of the road"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "You are driving on a two-lane street, while driving in front of you is moving very slowly. You...",
+        "options": [
+            "Pass the vehicle from the left hand side.",
+            "Pass the vehicle from the right hand side.",
+            "Use the mobile from any convenient side."
+        ],
+        "correct": 1
+    },
+    {
+        "question": "If the road is marked with broken white lines, you...",
+        "options": [
+            "Shall not change track.",
+            "Can change track if required",
+            "Shall stop the vehicle"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Using mobile phone while driving",
+        "options": [
+            "A fine of Rs. 100/- Only",
+            "Disqualification from holding the Driving Licence Under CMVR 21(25)",
+            "A fine of Rs. 500/- Only"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "If drunken driving is detected, the driver is liable to be punished with...",
+        "options": [
+            "Imprisonment which may extent to 6 months or Rs. 2000/- as fine or both",
+            "Imprisonment which may extent to 1 year or with fine up to Rs. 4000/- or both",
+            "2 years rigorous imprisonment"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Road on which driving in reverse gear is prohibited",
+        "options": [
+            "One-way road",
+            "Steep descending road",
+            "Steep ascending road"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Minimum distance to be kept from the vehicle going in front",
+        "options": [
+            "10 meter",
+            "5 Meter",
+            "Safe distance according to speed"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Maximum distance allowed between towing and towed vehicles",
+        "options": [
+            "15 meters",
+            "5 meters",
+            "10 meters"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "According to section 112 of the Motor Vehicles Act 1988",
+        "options": [
+            "Speed limit shall not be exceeded",
+            "Shall not drive after consuming alcohol",
+            "Shall not use vehicle on road without paying tax"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Driver driving a vehicle in a public place without a licence, is liable for",
+        "options": [
+            "Penalty only",
+            "Penalty for the driver and the owner and/or seizure of vehicle.",
+            "Warning"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "According to section 129 of Motor Vehicle Act 1988 a person driving a motor cycle shall",
+        "options": [
+            "Wear jerkins",
+            "Wear helmet",
+            "Wear shoes"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "The height limit of load on goods vehicle from ground level.",
+        "options": [
+            "3.8 Meters",
+            "3 Meters",
+            "No limit"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Section 113 of the Motor Vehicle Act 1988 stipulates that the driver should not drive a vehicle......",
+        "options": [
+            "After consuming alcohol.",
+            "Exceeding the speed limit",
+            "Exceeding the weight permitted to carry"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "The supervise a learner driver you MUST",
+        "options": [
+            "Be an approved driving instructor",
+            "Hold a Driving licence",
+            "Hold a learner’s licence"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "When lorries are loaded",
+        "options": [
+            "The load can be projected to both sides within 30 cm.",
+            "The load shall not project on both sides.",
+            "The load can be projected to both sides within 50 cm."
+        ],
+        "correct": 0
+    },
+    {
+        "question": "You are allowed to park",
+        "options": [
+            "On a footpath",
+            "On top of a hill",
+            "Neither of these two alternatives"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Under which circumstance you will avoid overtaking..",
+        "options": [
+            "After a curve",
+            "On a curve",
+            "When the visibility ahead is clear."
+        ],
+        "correct": 1
+    },
+    {
+        "question": "The number of passengers permitted to be taken in private vehicle is recorded in the",
+        "options": [
+            "Registration Certificate",
+            "Tax Token",
+            "Permit"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Before starting the engine of a vehicle",
+        "options": [
+            "Check radiator water level and Engine oil level",
+            "Check head light",
+            "Check brake"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Maximum distance allowed between towing and towed vehicles",
+        "options": [
+            "15 meters",
+            "5 meters",
+            "10 meters"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Driver driving a vehicle in a public place without a licence, is liable for",
+        "options": [
+            "Penalty only",
+            "Penalty for the driver and the owner and/or seizure of vehicle.",
+            "Warning"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "The height limit of load on goods vehicle from ground level.",
+        "options": [
+            "3.8 Meters",
+            "3 Meters",
+            "No limit"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Projection of load up to one meter (100 cm) towards back is permitted:",
+        "options": [
+            "In tractor",
+            "In stationwagon",
+            "In goods carriage"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Maximum length of load that can be projected from the rear part of a goods carriage:",
+        "options": [
+            "150 cm",
+            "200 cm",
+            "120 cm"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Maximum permitted weight that can be carried on a goods carriage:",
+        "options": [
+            "No limit",
+            "Allowed as per permit",
+            "10 tons"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "The minimum fine for overloading goods carriage:",
+        "options": [
+            "Rs. 2000/-",
+            "Rs. 3000/-",
+            "Rs. 4000/-"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "You are on a long downhill slope, what should you do to help control the speed of your vehicle?",
+        "options": [
+            "Change to a higher gear",
+            "Stop the engine & apply brake",
+            "Select neutral & apply brake"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "What can cause hand steering?",
+        "options": [
+            "Badly worn tyres",
+            "Over inflated tyres",
+            "Under inflated tyres"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Driving with high speed:",
+        "options": [
+            "Gives you better fuel efficiency",
+            "Takes less time for your journey",
+            "Reduces time to road hazard"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "You wish to take 'U' turn at an intersection controlled by a traffic light you should:",
+        "options": [
+            "Driver to another intersection that has no light",
+            "Wait until the light turns green before making the 'U' turn",
+            "Make the turn only if there is a police man at the intersection"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "You are driving a vehicle fitted with ABS, if you need to stop in an emergency, you should:",
+        "options": [
+            "Apply the brake immediately & quickly",
+            "Accelerate to maintain gap behind you",
+            "Take your foot off the accelerator & brake lightly"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "While on a round about:",
+        "options": [
+            "Traffic entering has right of way",
+            "Traffic on the round about has right of way",
+            "Flashing yellow signal is used when traffic light is not working"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "High beam in foggy conditions:",
+        "options": [
+            "Is good because it shows the way",
+            "Is bad because it reflects back and can dazzle",
+            "Make sure others can see you"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "A driver shall drive on one way:",
+        "options": [
+            "In the direction specified by the sign board",
+            "Reverse direction in emergencies",
+            "Both ways on Sundays"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "It is essential to wear a helmet while driving a two-wheeler because:",
+        "options": [
+            "It is for your individual safety",
+            "Otherwise you will be caught by the traffic police",
+            "It enhances your uniformity on the road"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "When shall you blow the horn?",
+        "options": [
+            "While overtaking",
+            "To warn other road users of your presence",
+            "To attract a friend's attention"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "You are overtaking at night & you must ensure that:",
+        "options": [
+            "You do not dazzle other road users",
+            "You flash fog lights before overtaking",
+            "Your rear fog lights are activated"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "You find pedestrians waiting to cross at a zebra crossing. They are trying to cross. What should you do?",
+        "options": [
+            "Sound your horn",
+            "Be patient and wait",
+            "Drive on"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Maximum permissible speed of a motor cycle in cities:",
+        "options": [
+            "40 km/hour",
+            "50 km/hour",
+            "30 km/hour"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Maximum permissible speed of motor cycle on open roads:",
+        "options": [
+            "30 km/hour",
+            "45 km/hour",
+            "50 km/hour"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "The maximum speed permitted for motor cycles in city during night time:",
+        "options": [
+            "40 km/hour",
+            "35 km/hour",
+            "25 km/hour"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Maximum permissible speed of a motor car on educational institutions:",
+        "options": [
+            "30 km/hour",
+            "25 km/hour",
+            "40 km/hour"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Maximum permissible speed of a motor car near educational institutions is:",
+        "options": [
+            "25 km/hour",
+            "35 km/hour",
+            "15 km/hour"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Maximum speed limit of an Ambulance:",
+        "options": [
+            "60 km/hour",
+            "70 km/hour",
+            "80 km/hour"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Dipping your lights is necessary when:",
+        "options": [
+            "You want to overtake",
+            "It is foggy",
+            "Following a vehicle"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Carrying of load which projects backwards beyond the vehicle is:",
+        "options": [
+            "Permitted only if extra light or reflectors are fitted to the rear of the vehicle with suitable warning lights or flags",
+            "Not permitted",
+            "Allowed at night time"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "In some conditions in which a motor cycle shall not be driven at the speed of 50 km/hour:",
+        "options": [
+            "During Night",
+            "During Day time",
+            "Under any circumstances"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "You are driving a bus that has stopped to pick up or drop off passengers you:",
+        "options": [
+            "Allow the pedestrians to cross the road",
+            "Overtake from the left",
+            "Undertake from the pedestrians"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "While overtaking a car at night you must ensure:",
+        "options": [
+            "You do not dazzle other road users",
+            "You flash fog lights before overtaking",
+            "Your rear fog lights are activated"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "While on a round about:",
+        "options": [
+            "Traffic entering has right of way",
+            "Traffic on the round about has right of way",
+            "Flashing yellow signal is used when traffic light is not working"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Maximum permitted speed of a motor car on national highway in the state:",
+        "options": [
+            "60 km/hour",
+            "70 km/hour",
+            "80 km/hour"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Maximum permissible speed of motor car on ghat roads:",
+        "options": [
+            "30 km/hour",
+            "40 km/hour",
+            "50 km/hour"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Motor vehicle which is not permitted to drive on ghat roads at a speed of more than 30 km/hour:",
+        "options": [
+            "Heavy passenger vehicle",
+            "Motor Car",
+            "Autorickshaw"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "The only vehicle which is permitted to be driven at a speed exceeding 60 km/hour:",
+        "options": [
+            "Motor Cycle",
+            "Motor Car",
+            "Stage Carriage"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Maximum permitted speed of truck on national highway in the state:",
+        "options": [
+            "50 km/hour",
+            "60 km/hour",
+            "70 km/hour"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "An accident has just happened and the injured person is lying on the road. The first thing you should do is:",
+        "options": [
+            "Protect the area and give first aid to injured persons",
+            "Inform the police and wait till they arrive",
+            "Take the area first aid, take the injured persons to the hospital"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Not using seat belt can lead to a fine of:",
+        "options": [
+            "Rs. 50/-",
+            "Rs. 100/-",
+            "Rs. 500/-"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Maximum speed allowed to vehicle passing a procession...",
+        "options": [
+            "15 km/hour",
+            "25 km/hour",
+            "35 km/hour"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Maximum speed permitted for vehicles towing another vehicle...",
+        "options": [
+            "20 km/hour",
+            "24 km/hour",
+            "32 km/hour"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Maximum permissible speed of a medium motor vehicle...",
+        "options": [
+            "50 km/hour",
+            "60 km/hour",
+            "70 km/hour"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Maximum permissible speed of a medium motor vehicle on Ghat roads is...",
+        "options": [
+            "35 km/hour",
+            "45 km/hour",
+            "25 km/hour"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Maximum permissible speed of a medium motor vehicle near educational institution...",
+        "options": [
+            "15 km/hour",
+            "25 km/hour",
+            "35 km/hour"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "You must not reverse your vehicle...",
+        "options": [
+            "On a busy road",
+            "On a one way road",
+            "All of the above"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "While traveling over motor way at night when vehicle lights ahead, you should ensure that lights should be on...",
+        "options": [
+            "Low beam head light",
+            "High beam head light",
+            "Either of the above"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Maximum permissible speed of an autorickshaw near educational institutions...",
+        "options": [
+            "35 km/hour",
+            "25 km/hour",
+            "20 km/hour"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Maximum permissible speed of an autorickshaw...",
+        "options": [
+            "30 km/hour",
+            "40 km/hour",
+            "50 km/hour"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Maximum permissible speed of an autorickshaw in cities and municipal towns...",
+        "options": [
+            "40 km/hour",
+            "30 km/hour",
+            "20 km/hour"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Maximum permissible speed of a light motor vehicle...",
+        "options": [
+            "60 km/hour",
+            "70 km/hour",
+            "No limit"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Air pollution affects...",
+        "options": [
+            "Human beings only",
+            "Plants and animals only",
+            "All of the above"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Section 185 of MV Act pertains to...",
+        "options": [
+            "Driving at excessive speed",
+            "Drunken driving",
+            "Both of the above"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "The type of parking is more suitable on wide roads...",
+        "options": [
+            "Parallel",
+            "In line",
+            "Inclined"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Maximum permissible speed of light motor vehicle near educational institution...",
+        "options": [
+            "25 km/hour",
+            "35 km/hour",
+            "45 km/hour"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Maximum permissible speed of heavy motor vehicle near educational institution...",
+        "options": [
+            "15 km/hour",
+            "25 km/hour",
+            "35 km/hour"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Maximum permissible speed of motor vehicles on ghat roads is...",
+        "options": [
+            "15 km/hour",
+            "25 km/hour",
+            "35 km/hour"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Maximum permissible speed of motor vehicles on ghat roads...",
+        "options": [
+            "15 km/hour",
+            "25 km/hour",
+            "35 km/hour"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Maximum permissible speed of heavy motor vehicles...",
+        "options": [
+            "60 km/hour",
+            "70 km/hour",
+            "80 km/hour"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Maximum permissible speed of light motor vehicles in the cities...",
+        "options": [
+            "45 km/hour",
+            "50 km/hour",
+            "60 km/hour"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "You are driving a car during a journey when you feel tired and unable to concentrate. What should you do?",
+        "options": [
+            "Increase your speed to finish your journey",
+            "Continue your journey and keep your windows open",
+            "Stop your vehicle and take rest till you feel fresh again"
+        ],
+        "correct": 2
+    }
+        ];
+        function loadQuiz() {
+            const quizDiv = document.getElementById("quiz");
+            questions.forEach((q, index) => {
+                const questionDiv = document.createElement("div");
+                questionDiv.classList.add("question");
+                questionDiv.id = `question${index}`;
+                
+                const questionText = document.createElement("h3");
+                questionText.textContent = q.question;
+                questionDiv.appendChild(questionText);
+                
+                const optionsList = document.createElement("ul");
+                optionsList.classList.add("options");
+                q.options.forEach((option, i) => {
+                    const optionItem = document.createElement("li");
+                    const optionLabel = document.createElement("label");
+                    const optionInput = document.createElement("input");
+                    optionInput.type = "radio";
+                    optionInput.name = `question${index}`;
+                    optionInput.value = i;
+                    optionLabel.appendChild(optionInput);
+                    optionLabel.appendChild(document.createTextNode(option));
+                    optionItem.appendChild(optionLabel);
+                    optionsList.appendChild(optionItem);
+                });
+                questionDiv.appendChild(optionsList);
+                
+                const submitButton = document.createElement("button");
+                submitButton.textContent = "Submit";
+                submitButton.onclick = () => checkAnswer(index);
+                questionDiv.appendChild(submitButton);
+                
+                quizDiv.appendChild(questionDiv);
+            });
+        }
+
+        function checkAnswer(questionIndex) {
+            const selectedOption = document.querySelector(`input[name="question${questionIndex}"]:checked`);
+            const questionDiv = document.getElementById(`question${questionIndex}`);
+            if (selectedOption) {
+                const answerIndex = parseInt(selectedOption.value);
+                if (answerIndex === questions[questionIndex].correct) {
+                    questionDiv.classList.add("correct");
+                    questionDiv.classList.remove("incorrect");
+                } else {
+                    questionDiv.classList.add("incorrect");
+                    questionDiv.classList.remove("correct");
+                }
+            } else {
+                questionDiv.classList.add("incorrect");
+                questionDiv.classList.remove("correct");
+            }
+        }
+
+        loadQuiz();
+    </script>
+</body>
+</html>
